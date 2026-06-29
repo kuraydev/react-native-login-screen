@@ -1,11 +1,4 @@
-import {
-  ViewStyle,
-  StyleSheet,
-  Dimensions,
-  ImageStyle,
-  TextStyle,
-} from "react-native";
-const { width: ScreenWidth } = Dimensions.get("screen");
+import { ViewStyle, StyleSheet, ImageStyle, TextStyle } from "react-native";
 
 interface Style {
   container: ViewStyle;
@@ -18,8 +11,6 @@ export default StyleSheet.create<Style>({
   container: {
     height: 45,
     borderRadius: 8,
-    width: ScreenWidth * 0.9,
-    paddingLeft: ScreenWidth * 0.2,
     alignItems: "center",
     flexDirection: "row",
     backgroundColor: "#e9eef4",

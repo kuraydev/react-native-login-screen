@@ -6,21 +6,21 @@ import {
   SetStateAction,
 } from "react";
 
-type Callback<T> = (value?: any) => void;
-type DispatchWithCallback<T> = (value: any, callback?: Callback<any>) => void;
+type Callback<T> = (value: T) => void;
+type DispatchWithCallback<A, T> = (value: A, callback?: Callback<T>) => void;
 
 function useStateWithCallback<T>(
-  initialState: any | (() => any),
-): [any, DispatchWithCallback<SetStateAction<any>>] {
-  const [state, _setState] = useState(initialState);
+  initialState: T | (() => T),
+): [T, DispatchWithCallback<SetStateAction<T>, T>] {
+  const [state, setStateInternal] = useState<T>(initialState);
 
-  const callbackRef = useRef<Callback<any>>();
+  const callbackRef = useRef<Callback<T> | undefined>(undefined);
   const isFirstCallbackCall = useRef<boolean>(true);
 
   const setState = useCallback(
-    (setStateAction: SetStateAction<any>, callback?: Callback<any>): void => {
+    (setStateAction: SetStateAction<T>, callback?: Callback<T>): void => {
       callbackRef.current = callback;
-      _setState(setStateAction);
+      setStateInternal(setStateAction);
     },
     [],
   );

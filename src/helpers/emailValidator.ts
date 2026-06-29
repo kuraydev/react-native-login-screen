@@ -1,10 +1,10 @@
 const emailRegEx =
-  /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+  /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 // Thanks to:
 // This is directly taken from `https://github.com/manishsaraan/email-validator/blob/master/index.js`
 // Just converted to the TypeScript and modernized a bit.
 // ? Local part may be up to 64 octets long and the domain may have a maximum of 255 octets.
-export default function (email: string): boolean {
+export default function emailValidator(email: string): boolean {
   if (!email) {
     return false;
   }

@@ -7,7 +7,7 @@ import styles from "./Tooltip.style";
 
 interface TooltipProps {
   style?: StyleProp<ViewStyle>;
-  children: any;
+  children: React.ReactNode;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ style, children }) => {
