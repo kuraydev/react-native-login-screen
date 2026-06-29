@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/kuraydev/react-native-login-screen/discussions
+    about: Ask and answer questions about usage and customization.
