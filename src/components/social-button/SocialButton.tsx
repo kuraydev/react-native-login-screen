@@ -9,6 +9,8 @@ import {
   ImageStyle,
   TouchableOpacity,
   ImageSourcePropType,
+  useWindowDimensions,
+  AccessibilityRole,
 } from "react-native";
 /**
  * ? Local Imports
@@ -21,6 +23,15 @@ type CustomImageStyleProp =
   | Array<StyleProp<ImageStyle>>;
 type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
+export type TouchableComponentType = React.ComponentType<
+  React.PropsWithChildren<{
+    style?: StyleProp<ViewStyle>;
+    onPress?: () => void;
+    accessibilityRole?: AccessibilityRole;
+    accessibilityLabel?: string;
+  }>
+>;
+
 export interface ISocialButtonProps {
   text: string;
   style?: CustomStyleProp;
@@ -28,7 +39,7 @@ export interface ISocialButtonProps {
   imageSource?: ImageSourcePropType;
   textContainerStyle?: CustomStyleProp;
   iconImageStyle?: CustomImageStyleProp;
-  TouchableComponent?: any;
+  TouchableComponent?: TouchableComponentType;
   onPress: () => void;
 }
 
@@ -42,8 +53,18 @@ const SocialButton: React.FC<ISocialButtonProps> = ({
   imageSource = require("../../local-assets/facebook.png"),
   onPress,
 }) => {
+  const { width: screenWidth } = useWindowDimensions();
   return (
-    <TouchableComponent style={[styles.container, style]} onPress={onPress}>
+    <TouchableComponent
+      style={[
+        styles.container,
+        { width: screenWidth * 0.9, paddingLeft: screenWidth * 0.2 },
+        style,
+      ]}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={text}
+    >
       <Image
         resizeMode="contain"
         source={imageSource}

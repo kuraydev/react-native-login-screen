@@ -1,11 +1,4 @@
-import {
-  ViewStyle,
-  ImageStyle,
-  Dimensions,
-  StyleSheet,
-  TextStyle,
-} from "react-native";
-const { width: ScreenWidth } = Dimensions.get("screen");
+import { ViewStyle, ImageStyle, StyleSheet, TextStyle } from "react-native";
 
 interface Style {
   container: ViewStyle;
@@ -61,7 +54,6 @@ export default StyleSheet.create<Style>({
   },
   loginButtonStyle: {
     height: 40,
-    width: ScreenWidth * 0.9,
     backgroundColor: "#25a9e2",
     borderRadius: 8,
     alignItems: "center",
@@ -95,7 +87,6 @@ export default StyleSheet.create<Style>({
     marginTop: 24,
     marginBottom: 12,
     borderRadius: 16,
-    width: ScreenWidth * 0.8,
     alignSelf: "center",
     backgroundColor: "#ccc",
   },
