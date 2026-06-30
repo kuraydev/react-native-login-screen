@@ -305,12 +305,22 @@ passwordValidator("Abcd123!", patternHigh); // => true
   old and new architectures with no extra setup.
 - **Expo:** works with the managed and bare workflows
   (`npx expo install react-native-login-screen`).
-- **Web (`react-native-web`):** partial. Some primitives used here
-  (`LayoutAnimation`, `require()`'d image assets) have limited or no web support.
-  Tracking issues: [#11](https://github.com/kuraydev/react-native-login-screen/issues/11),
-  [#56](https://github.com/kuraydev/react-native-login-screen/issues/56). The
-  top-level `Dimensions.get('screen')` read was replaced with `useWindowDimensions`
-  to improve web behavior.
+- **Web (`react-native-web`):** supported. `LoginScreen` renders and functions
+  under `react-native-web` without throwing
+  ([#11](https://github.com/kuraydev/react-native-login-screen/issues/11),
+  [#56](https://github.com/kuraydev/react-native-login-screen/issues/56)).
+  - `LayoutAnimation` (used for the validation tooltips) is not implemented by
+    `react-native-web`, so it is guarded behind a web-only check: on web the
+    tooltips simply appear without the spring animation, while iOS/Android keep
+    the exact native animation.
+  - The bundled `require()`'d PNG assets (logo, social icons, password eye) all
+    carry explicit `width`/`height` styles, so they render correctly under
+    `react-native-web`'s image handling.
+  - The top-level `Dimensions.get('screen')` read was replaced with
+    `useWindowDimensions` so the layout is responsive on web.
+  - **Caveats:** web is best-effort — animations degrade to no-ops and any
+    web-specific styling/sizing is left to your app. Native (iOS/Android)
+    behavior is unchanged.
 
 ## Contributing
 

@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **react-native-web support** (closes #56, #11). `LoginScreen` now renders and
+  functions under `react-native-web` without throwing. Added a web smoke test
+  (`src/__tests__/LoginScreen.web.test.tsx`) that renders under `Platform.OS === "web"`
+  and asserts the tooltip flow degrades gracefully without invoking
+  `LayoutAnimation`.
+
+### Fixed
+
+- Guarded the `LayoutAnimation.spring()` calls in the email/password validation
+  flow behind a web-only check (new `src/helpers/layoutAnimation.ts` helper).
+  `react-native-web` does not implement `LayoutAnimation`, so the unconditional
+  call previously threw/warned on web. Native (iOS/Android) behavior is unchanged.
+
 ## [6.0.0]
 
 A maintenance overhaul focused on tooling, correctness and documentation.

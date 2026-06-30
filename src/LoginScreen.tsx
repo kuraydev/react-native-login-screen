@@ -14,7 +14,6 @@ import {
   useWindowDimensions,
   View,
   ViewStyle,
-  LayoutAnimation,
 } from "react-native";
 import TextInput, {
   IInteractiveTextInputProps,
@@ -29,6 +28,7 @@ import SocialButton, {
 import useStateWithCallback from "./helpers/useStateWithCallback";
 import emailValidator from "./helpers/emailValidator";
 import passwordValidator from "./helpers/passwordValidator";
+import springLayoutAnimation from "./helpers/layoutAnimation";
 import Tooltip from "./components/tooltip/Tooltip";
 
 // LayoutAnimation is opt-in on Android and is a no-op unless explicitly enabled.
@@ -178,7 +178,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
       onPasswordChange(password);
       return;
     } else {
-      LayoutAnimation.spring();
+      springLayoutAnimation();
       !disableEmailTooltip && setEmailTooltipVisible(false);
       !disablePasswordTooltip && setPasswordTooltipVisible(true);
       onPasswordChange(password);
@@ -207,7 +207,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
       onEmailChange(email);
       return;
     } else {
-      LayoutAnimation.spring();
+      springLayoutAnimation();
       !disableEmailTooltip && setEmailTooltipVisible(true);
       onEmailChange(email);
     }
