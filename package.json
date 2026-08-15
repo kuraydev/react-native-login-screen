@@ -1,6 +1,6 @@
 {
   "name": "react-native-login-screen",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Fully Customizable & Ready to use Login Screen for React Native",
   "keywords": [
     "login",
@@ -58,5 +58,22 @@
     "copy:package": "cpx '../package.json' '../build/dist/'",
     "husky:lint": "npx husky add .husky/pre-commit 'npm run lint'",
     "husky:prettier": "npx husky set .husky/pre-commit 'npm run prettier'"
-  }
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.64.0"
+  },
+  "types": "./build/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/dist/index.d.ts",
+      "default": "./build/dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "build",
+    "!build/dist/package.json",
+    "!build/dist/tsconfig.tsbuildinfo"
+  ]
 }
